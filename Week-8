@@ -1,0 +1,68 @@
+import java.util.*;
+
+public class BannerApp {
+
+    // Function to create character patterns
+    public static Map<Character, String[]> createPatterns() {
+        Map<Character, String[]> map = new HashMap<>();
+
+        map.put('O', new String[]{
+                " *** ",
+                "*   *",
+                "*   *",
+                "*   *",
+                " *** "
+        });
+
+        map.put('P', new String[]{
+                "**** ",
+                "*   *",
+                "**** ",
+                "*    ",
+                "*    "
+        });
+
+        map.put('S', new String[]{
+                " ****",
+                "*    ",
+                " *** ",
+                "    *",
+                "**** "
+        });
+
+        return map;
+    }
+
+    // Function to print banner
+    public static void printBanner(String word, Map<Character, String[]> map) {
+
+        word = word.toUpperCase();
+
+        for (int i = 0; i < 5; i++) { // each row
+            for (char ch : word.toCharArray()) {
+
+                if (map.containsKey(ch)) {
+                    System.out.print(map.get(ch)[i] + "  ");
+                } else {
+                    System.out.print("     "); // space for unknown chars
+                }
+            }
+            System.out.println();
+        }
+    }
+
+    public static void main(String[] args) {
+
+        Scanner sc = new Scanner(System.in);
+
+        Map<Character, String[]> patterns = createPatterns();
+
+        System.out.print("Enter a word: ");
+        String word = sc.nextLine();
+
+        System.out.println("\nBanner Output:\n");
+        printBanner(word, patterns);
+
+        sc.close();
+    }
+}
